@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>READING TIME</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 id="reading-time"></h1>
+      <header class="text-head">
+        <h1>Lorem Ipsum</h1>
+        <strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+        scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+        electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+        Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+        PageMaker including versions of Lorem Ipsum.
+      </header>
+      <article>
+        <h2>Do czego tego użyć?</h2>
+        Ogólnie znana teza głosi, iż użytkownika może rozpraszać zrozumiała zawartość strony, kiedy ten chce zobaczyć
+        sam jej wygląd. Jedną z mocnych stron używania Lorem Ipsum jest to, że ma wiele różnych „kombinacji” zdań, słów
+        i akapitów, w przeciwieństwie do zwykłego: „tekst, tekst, tekst”, sprawiającego, że wygląda to „zbyt czytelnie”
+        po polsku. Wielu webmasterów i designerów używa Lorem Ipsum jako domyślnego modelu tekstu i wpisanie w
+        internetowej wyszukiwarce ‘lorem ipsum’ spowoduje znalezienie bardzo wielu stron, które wciąż są w budowie.
+        Wiele wersji tekstu ewoluowało i zmieniało się przez lata, czasem przez przypadek, czasem specjalnie
+        (humorystyczne wstawki itd).
+      </article>
+      <article>
+        <h2>Skąd to wziąć?</h2>
+        Jest dostępnych wiele różnych wersji Lorem Ipsum, ale większość zmieniła się pod wpływem dodanego humoru czy
+        przypadkowych słów, które nawet w najmniejszym stopniu nie przypominają istniejących. Jeśli masz zamiar użyć
+        fragmentu Lorem Ipsum, lepiej mieć pewność, że nie ma niczego „dziwnego” w środku tekstu. Wszystkie Internetowe
+        generatory Lorem Ipsum mają tendencje do kopiowania już istniejących bloków, co czyni nasz pierwszym prawdziwym
+        generatorem w Internecie. Używamy zawierającego ponad 200 łacińskich słów słownika, w kontekście wielu znanych
+        sentencji, by wygenerować tekst wyglądający odpowiednio. To wszystko czyni „nasz” Lorem Ipsum wolnym od
+        powtórzeń, humorystycznych wstawek czy niecharakterystycznych słów.
+        pains."
+      </article>
+      <article data-rt-regex="[\u00ff-\uffff]">
+        <h2>什么是Lorem Ipsum?</h2>
+        Lorem Ipsum，也称乱数假文或者哑元文本， 是印刷及排版领域所常用的虚拟文字。由于曾经一台匿名的打印机刻意打乱了一盒印刷字体从而造出一本字体样品书，Lorem
+        Ipsum从西元15世纪起就被作为此领域的标准文本使用。它不仅延续了五个世纪，还通过了电子排版的挑战，其雏形却依然保存至今。在1960年代，”Leatraset”公司发布了印刷着Lorem
+        Ipsum段落的纸张，从而广泛普及了它的使用。最近，计算机桌面出版软件”Aldus PageMaker”也通过同样的方式使Lorem Ipsum落入大众的视野。
+      </article>
+    </div>
+    <script src="./readingTime.min.js"></script>
+    <script>
+      new ReadingTime({
+        // set the speed of read words per minute
+        wordsPerMinute: 215,
+
+        // global regex for all elements
+        // you can set a specific regex for an element
+        // just add data-rt-regex from regex to the element
+        // see above for Chinese text
+        regex: /\s+/g, // default /\s+/g
+
+        // an array of elements from which we count words
+        elements: ['.text-head', 'article'],
+
+        // callback function with which
+        // we put the text with the number of characters and minutes
+        template: (minutes, words) => {
+          const element = document.getElementById('reading-time');
+          element.innerHTML = `${minutes} min (words: ${words})`;
+        }
+      });
+    </script>
+  </body>
+
+</html>
