@@ -6,15 +6,8 @@ import pkg from './package.json';
 
 const { PRODUCTION } = process.env;
 
-export default {
-  input: 'sources/script.js',
-  output: {
-    file: pkg.main,
-    format: 'iife',
-    name: 'ReadingTime',
-    sourcemap: !PRODUCTION,
-  },
-  plugins: [
+const plugins = () => {
+  return [
     babel({
       exclude: 'node_modules/**',
       babelHelpers: 'bundled',
@@ -22,5 +15,27 @@ export default {
     PRODUCTION && terser(),
     !PRODUCTION && serve({ open: true, contentBase: 'docs' }),
     !PRODUCTION && livereload(),
-  ],
-};
+  ]
+}
+
+export default [
+  {
+    input: 'sources/script.js',
+    output: {
+      file: pkg.main,
+      format: 'iife',
+      name: 'ReadingTime',
+      sourcemap: !PRODUCTION,
+    },
+    plugins: plugins(),
+  },
+  {
+    input: 'sources/script.js',
+    output: {
+      file: pkg.browser,
+      format: 'umd',
+      name: 'ReadingTime'
+    },
+    plugins: plugins(),
+  }
+];

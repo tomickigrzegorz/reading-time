@@ -4,18 +4,17 @@ class ReadingTime {
     elements,
     regex,
     template = () => { }
-  }
-  ) {
+  }) {
     this.template = template;
     this.elements = elements;
     this.regex = regex || /\s+/g;
     this.wordsPerMinute = wordsPerMinute || 200;
-    this.words = 0;
 
-    this.init();
+    this.initial();
   }
 
-  init = () => {
+  initial = () => {
+    let words = 0;
     [...this.elements].forEach(el => {
       const elements = document.querySelectorAll(el);
       [...elements].forEach(element => {
@@ -23,19 +22,19 @@ class ReadingTime {
         const regexLocal = regLocal !== undefined ? new RegExp(`${regLocal}|\s+`, "g") : this.regex;
 
         const numberWords = this.match(element.innerText.trim(), regexLocal);
-        this.words += numberWords;
+        words += numberWords;
       });
     });
 
-    this.minutes = Math.ceil(this.words / this.wordsPerMinute);
+    const minutes = Math.ceil(words / this.wordsPerMinute);
 
-    this.template(this.minutes, this.words);
+    this.template(minutes, words);
   };
 
   // regex for all elements
   match = (str, regexLocal) => {
     const matches = str.match(regexLocal);
-    return matches ? matches.length : 0;
+    return matches ? matches.length + 1 : 0;
   }
 }
 
