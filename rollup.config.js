@@ -31,6 +31,7 @@ export default [
   },
   {
     input: 'sources/script.js',
+    watch: false,
     output: {
       file: pkg.browser,
       format: 'umd',
