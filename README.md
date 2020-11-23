@@ -82,8 +82,8 @@ props | type | require | default | description
 wordsPerMinute | number |   | 200 | set the speed of read words per minute
 regex | string |    | /\s+/g | global regex for all elements, you can set a specific regex for an element just add `data-rt-regex` from regex to the element
 imagesTime | number |   |   | set the photo viewing speed per secund
-elements | array | ✔ |   | an array of elements from which we count words
-template | function | ✔ |    | callback function with which we put the text with the number of characters and minutes
+elements | array | ✔ |   | an array of elements from which we count words and images
+template | function | ✔ |    | callback function with which we put the text with the number of characters, minutes and images
 
 ## Additional configuration
 If you want to add additional configuration (regex) for a particular field, just add:
