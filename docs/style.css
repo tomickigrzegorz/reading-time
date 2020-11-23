@@ -30,7 +30,22 @@ h2 {
   margin-bottom: 10px;
 }
 
+h4 {
+  color: rgb(61, 61, 61);
+}
+
 .container {
   max-width: 900px;
   margin: auto;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+}
+
+img {
+  width: 100%;
+  height: auto;
 }
