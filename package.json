@@ -1,6 +1,6 @@
 {
   "name": "reading-time",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A simple, lightweight plugin used to display an estimated time to read some text no dependency",
   "author": "Grzegorz Tomicki",
   "main": "docs/readingTime.min.js",
@@ -15,15 +15,16 @@
     "watch": "rollup -c -w"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.3",
+    "@babel/core": "^7.12.7",
     "@babel/eslint-parser": "^7.12.1",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
-    "@babel/preset-env": "^7.12.1",
+    "@babel/preset-env": "^7.12.7",
     "@rollup/plugin-babel": "^5.2.1",
     "core-js": "^3.7.0",
-    "eslint": "^7.13.0",
+    "eslint": "^7.14.0",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.2.0",
     "rollup": "^2.33.3",
     "rollup-plugin-livereload": "^2.0.0",
     "rollup-plugin-serve": "^1.1.0",
