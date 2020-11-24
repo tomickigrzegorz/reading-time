@@ -13,7 +13,7 @@
 </p>
 
 ## Demo
-See the demo - [example](https://tomik23.github.io/reading-time/)
+See the demo - [example](https://tomik23.github.io/reading-time/)  
 An example of production use can be seen [here](https://grzegorztomicki.pl/rzym-w-majowy-weekend.html).
 
 ## Initialization
