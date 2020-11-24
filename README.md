@@ -13,9 +13,8 @@
 </p>
 
 ## Demo
-
 See the demo - [example](https://tomik23.github.io/reading-time/)
-
+An example of production use can be seen [here](https://grzegorztomicki.pl/rzym-w-majowy-weekend.html).
 
 ## Initialization
 ```js
@@ -56,20 +55,21 @@ JavaScript
     // set the speed of read words per minute
     wordsPerMinute: 215,
 
+    // set the photo viewing speed per secund
+    imagesTime: 12,
+
     // global regex for all elements, you can set
     // a specific regex for an element just add 
     // data-rt-regex from regex to the element
     // default /\s+/g
     regex: /\s+/g,
 
-    // set the photo viewing speed per secund
-    imagesTime: 12,
-
-    // an array of elements from which we count words
+    // an array of elements from which
+    // we count words and images
     elements: ['.text-head', 'article'],
 
-    // callback function with which
-    // we put the text with the number of characters and minutes
+    // callback function with which we put the text
+    // with the number of characters and minutes
     template: (minutes, words) => {
       const element = document.getElementById('reading-time');
       element.innerHTML = `${minutes} min (words: ${words})`;
@@ -77,13 +77,6 @@ JavaScript
   });
 </script>
 ```
-props | type | require | default | description
------ | :---: | :-----: | :-----: | -----------
-wordsPerMinute | number |   | 200 | set the speed of read words per minute
-regex | string |    | /\s+/g | global regex for all elements, you can set a specific regex for an element just add `data-rt-regex` from regex to the element
-imagesTime | number |   |   | set the photo viewing speed per secund
-elements | array | ✔ |   | an array of elements from which we count words and images
-template | function | ✔ |    | callback function with which we put the text with the number of characters, minutes and images
 
 ## Additional configuration
 If you want to add additional configuration (regex) for a particular field, just add:
