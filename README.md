@@ -1,7 +1,7 @@
 <h1 align="center">reading-time</h1>
 
 <p align="center">
-  A simple, lightweight plugin used to display an estimated time to read some text no dependency
+  A simple, lightweight plugin used to display an estimated time to read some text and images, no dependency
 </p>
 
 <p align="center">
