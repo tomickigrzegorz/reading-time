@@ -4,20 +4,10 @@ module.exports = {
       '@babel/preset-env',
       {
         // debug: true,
-        // useBuiltIns: 'usage',
-        useBuiltIns: 'usage',
+        useBuiltIns: 'entry', // usage
         corejs: 3,
       },
     ],
   ],
-  plugins: [
-    '@babel/proposal-class-properties',
-    [
-      '@babel/plugin-transform-runtime',
-      {
-        regenerator: true,
-      },
-    ],
-    '@babel/plugin-transform-regenerator',
-  ],
+  plugins: ['@babel/proposal-class-properties'],
 };
