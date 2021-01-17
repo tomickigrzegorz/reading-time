@@ -30,7 +30,27 @@ h2 {
   margin-bottom: 10px;
 }
 
+h4 {
+  color: rgb(61, 61, 61);
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+section {
+  padding-bottom: 20px;
+  border-bottom: 1px dashed rgb(0, 0, 0);
+}
+
 .container {
   max-width: 900px;
   margin: auto;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
 }

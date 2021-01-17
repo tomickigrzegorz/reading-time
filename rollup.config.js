@@ -6,13 +6,17 @@ import pkg from './package.json';
 
 const { PRODUCTION } = process.env;
 
-const plugins = () => {
+const plugins = ({ module }) => {
   return [
     babel({
       exclude: 'node_modules/**',
       babelHelpers: 'bundled',
     }),
-    PRODUCTION && terser(),
+    PRODUCTION && terser({
+      module,
+      mangle: true,
+      compress: true,
+    }),
     !PRODUCTION && serve({ open: true, contentBase: 'docs' }),
     !PRODUCTION && livereload(),
   ]
@@ -27,7 +31,7 @@ export default [
       name: 'ReadingTime',
       sourcemap: !PRODUCTION,
     },
-    plugins: plugins(),
+    plugins: plugins({ module: false }),
   },
   {
     input: 'sources/script.js',
@@ -37,6 +41,6 @@ export default [
       format: 'umd',
       name: 'ReadingTime'
     },
-    plugins: plugins(),
+    plugins: plugins({ module: true }),
   }
 ];
