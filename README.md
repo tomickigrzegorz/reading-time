@@ -45,7 +45,7 @@ Download file `readingTime.min.js` from `docs` and add before close `</body>`, `
 Add an HTML element to which we will inject information about the minutes and the number of words as well as photos.
 ```html
 <section>
-  <h2 id="reading-time"></h2>
+  <h2 class="reading-time"></h2>
   Lorem ipsum dolor, sit amet consectetur adipisicing elit.
   Quos quibusdam qui tempore aspernatur repudiandae commodi consequatur
   nam quisquam voluptates. Porro laudantium fugit natus ducimus
