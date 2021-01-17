@@ -10,7 +10,7 @@ const plugins = () => {
   return [
     babel({
       exclude: 'node_modules/**',
-      babelHelpers: 'bundled',
+      babelHelpers: 'runtime',
     }),
     PRODUCTION && terser(),
     !PRODUCTION && serve({ open: true, contentBase: 'docs' }),

@@ -1,40 +1,68 @@
 class ReadingTime {
-  constructor({ wordsTime, elements, regex, imagesTime, template = () => { } }) {
+  constructor({
+    wordsTime,
+    elements,
+    regex,
+    imagesTime,
+    remote,
+    template = () => { },
+  }) {
     this.template = template;
-    this.elements = elements;
+    this.elements = document.querySelectorAll(elements);
     this.regex = regex || /\s+/g;
+    this.remote = remote;
     this.regexImg = /<img([\w\W]+?)[/]?>/g;
     this.wordsTime = wordsTime || 200;
     this.imagesTime = imagesTime;
 
-    this.initial();
+    [this.elements].forEach((element) => {
+      console.log(element);
+      this.initial(element);
+    });
   }
 
-  initial = () => {
-    let wordsCount = 0;
-    let imagesCount = 0;
-    [...this.elements].forEach((el) => {
-      const elements = document.querySelectorAll(el);
-      [...elements].forEach((element) => {
-        const regLocal = element.dataset.rtRegex;
-        const regexGlobal =
-          regLocal !== undefined
-            ? new RegExp(`${regLocal}|\s+`, 'g')
-            : this.regex;
+  initial = (elements) => {
+    [...elements].forEach((element, index) => {
+      const regLocal = element.dataset.rtRegex;
+      const dataFile = element.dataset.file;
 
-        const numberImages = this.getImages(element.innerHTML);
-        const numberWords = this.match(element.innerText.trim(), regexGlobal);
+      const readWordsFromFile = dataFile
+        ? this.readFile(dataFile, this.remote)
+        : '';
 
-        wordsCount += numberWords;
-        imagesCount += numberImages;
-      });
+      console.log(readWordsFromFile);
+
+      const regexGlobal =
+        regLocal !== undefined
+          ? new RegExp(`${regLocal}|\s+`, 'g')
+          : this.regex;
+
+      const numberImages = this.getImages(element.innerHTML);
+      const numberWords = this.match(element.innerText.trim(), regexGlobal);
+
+      const minuteWords = numberWords / this.wordsTime;
+      const imageTime = this.imageReadTime(numberImages);
+      const timeRead = this.imagesTime ? minuteWords + imageTime : minuteWords;
+
+      this.template(
+        index,
+        timeRead,
+        numberWords,
+        numberImages,
+        readWordsFromFile
+      );
     });
+  };
 
-    const minuteWords = wordsCount / this.wordsTime;
-    const imageTime = this.imageReadTime(imagesCount);
-    const timeRead = this.imagesTime ? minuteWords + imageTime : minuteWords;
+  readFile = async (file, remote) => {
+    const response = await fetch(file);
+    const html = await response.text();
 
-    this.template(timeRead, wordsCount, imagesCount);
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+
+    const text = doc.querySelector(remote.place);
+    return text;
   };
 
   // https://www.freecodecamp.org/news/how-to-more-accurately-estimate-read-time-for-medium-articles-in-javascript-fb563ff0282a/
