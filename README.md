@@ -42,9 +42,15 @@ npm run build
 ## Installation
 Download file `readingTime.min.js` from `docs` and add before close `</body>`, `<script src="./readingTime.min.js"></script>`
 
-Add an HTML element into which we will inject information about minutes and word count.
+Add an HTML element to which we will inject information about the minutes and the number of words as well as photos.
 ```html
-<h1 id="reading-time"></h1>
+<section>
+  <h2 id="reading-time"></h2>
+  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+  Quos quibusdam qui tempore aspernatur repudiandae commodi consequatur
+  nam quisquam voluptates. Porro laudantium fugit natus ducimus
+  <img src="https://grzegorztomicki.pl/images/lwow/576/IMG_0202.jpg">
+</section>
 ```
 Call our library and add configuration.
 
@@ -55,35 +61,31 @@ JavaScript
     // set the speed of read words per minute
     wordsPerMinute: 215,
 
-    // set the photo viewing speed per secund
-    imagesTime: 12,
-
-    // global regex for all elements, you can set
-    // a specific regex for an element just add 
-    // data-rt-regex from regex to the element
-    // default /\s+/g
-    regex: /\s+/g,
+    // set the photo viewing speed per second
+    photosPerMinute: 12,
 
     // an array of elements from which
-    // we count words and images
-    elements: ['.text-head', 'article'],
+    // we count words and images, 
+    // it can be an html element, a class element, 
+    // or even the whole body
+    elements: ['section'],
 
     // callback function with which we put the text
     // with the number of characters and minutes
-    template: (minutes, words) => {
-      const element = document.getElementById('reading-time');
-      element.innerHTML = `${minutes} min (words: ${words})`;
+    onResult: (index, minutes, words, images) => {
+      const elements = document.querySelectorAll('.reading-time')[index];
+      elements.innerHTML = `
+        ~${Math.ceil(minutes)} min read (words: ${words}, images: ${images})
+      `;
     }
   });
 </script>
 ```
 
-## Additional configuration
-If you want to add additional configuration (regex) for a particular field, just add:
+## Summary
+As you can see in the example [reading-time](https://tomik23.github.io/reading-time/), the library has been tested with several languages such as Georgian, Arabic, Korean, Hindi, Japanise, Chinese ...
+You can control the time at which the text `wordsPerMinute` is read and when we view photos `photosPerMinute`.
 
-```HTML
-<article data-rt-regex="[\u00ff-\uffff]">
-  <h2>什么是Lorem Ipsum?</h2>
-  Lorem Ipsum，也称乱数假文或者哑元文本， 是印刷及排版领域所常用的虚拟文字。由于曾经一台匿名的打印机刻意打乱了一盒印刷字体从而造出一本字体样品书，Lorem Ipsum从西元15世纪起就被作为此领域的标准文本使用。它不仅延续了五个世纪，还通过了电子排版的挑战，其雏形却依然保存至今。在1960年代，”Leatraset”公司发布了印刷着Lorem Ipsum段落的纸张，从而广泛普及了它的使用。最近，计算机桌面出版软件”Aldus PageMaker”也通过同样的方式使Lorem Ipsum落入大众的视野。
-</article>
-```
+Unfortunately, at present you can only set the reading time globally, you cannot set the time for a particular language. On the other hand, there are practically no articles with many languages, therefore you can take the average of all languages.
+
+Languages can be mixed, they don't have to be in the same section. You can count all the words on the page, you just need to set `elements: ['body']`
