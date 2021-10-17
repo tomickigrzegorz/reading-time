@@ -6,6 +6,7 @@ module.exports = {
         // debug: true,
         useBuiltIns: 'entry', // usage
         corejs: 3,
+        loose: true,
       },
     ],
   ],
