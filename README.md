@@ -5,10 +5,10 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/package-json/v/tomik23/reading-time">
-  <img src="https://img.shields.io/github/size/tomik23/reading-time/docs/readingTime.min.js">
+  <img src="https://img.shields.io/github/package-json/v/tomik23/reading-time?style=for-the-badge">
+  <img src="https://img.shields.io/github/size/tomik23/reading-time/docs/readingTime.min.js?style=for-the-badge">
   <a href="LICENSE">
-    <img src="https://img.shields.io/badge/License-MIT-green.svg">
+    <img src="https://img.shields.io/github/license/tomik23/reading-time?style=for-the-badge">
   </a>
 </p>
 
@@ -84,11 +84,11 @@ JavaScript
 
     // callback function with which we put the text
     // with the number of characters and minutes
-    onResult: (index, minutes, words, images) => {
+    onResult: function (index, minutes, words, images) {
       const elements = document.querySelectorAll('.reading-time')[index];
-      elements.innerHTML = `
-        ~${Math.ceil(minutes)} min read (words: ${words}, images: ${images})
-      `;
+      const img = images ? ', images: ' + images : '';
+
+      elements.innerHTML = '~' + Math.ceil(minutes) + ' min read (words: ' + words + img + ')';
     }
   });
 </script>
