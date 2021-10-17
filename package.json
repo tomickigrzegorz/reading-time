@@ -1,6 +1,6 @@
 {
   "name": "reading-time",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A simple, lightweight plugin used to display an estimated time to read some text no dependency",
   "author": "Grzegorz Tomicki",
   "main": "docs/readingTime.min.js",
@@ -30,16 +30,9 @@
     "rollup-plugin-serve": "^1.1.0",
     "rollup-plugin-terser": "^7.0.2"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ]
 }
