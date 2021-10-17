@@ -2,13 +2,13 @@ class ReadingTime {
   constructor({
     wordsPerMinute,
     elements,
-    // regex,
+    exclude,
     photosPerMinute,
-    onResult = () => { },
+    onResult = () => {},
   }) {
     this.onResult = onResult;
     this.elements = document.querySelectorAll(elements);
-    // this.regex = regex;
+
     this.wordsPerMinute = wordsPerMinute || 200;
     this.photosPerMinute = photosPerMinute;
 
@@ -27,15 +27,35 @@ class ReadingTime {
       img: /<img([\w\W]+?)[/]?>/g,
     };
 
-    [this.elements].forEach((element) => {
-      this.initial(element);
+    const exc = document.querySelectorAll(exclude);
+    [].slice.call([this.elements]).forEach((element) => {
+      this.initial(element, exc);
     });
   }
 
-  initial = (elements) => {
-    [...elements].forEach((element, index) => {
+  exCount = (element, exc) => {
+    let excludeCountChars = 0;
+    [].slice.call(exc).forEach((ex) => {
+      const text = ex.innerText.trim();
+      if (ex && element.contains(ex)) {
+        excludeCountChars = this.match(text);
+      }
+    });
+
+    return excludeCountChars;
+  };
+
+  initial = (elements, exc) => {
+    [].slice.call(elements).forEach((element, index) => {
+      // exclude count chars
+      const excludeCountChars = this.exCount(element, exc);
+
+      // get all image from text
       const numberImages = this.getImages(element.innerHTML);
-      const numberWords = this.match(element.innerText.trim());
+
+      // trim text
+      const numberWords =
+        this.match(element.innerText.trim()) - (excludeCountChars || 0);
 
       const minuteWords = numberWords / this.wordsPerMinute;
       const imageTime = this.imageReadTime(numberImages);
@@ -50,42 +70,40 @@ class ReadingTime {
 
   // https://www.freecodecamp.org/news/how-to-more-accurately-estimate-read-time-for-medium-articles-in-javascript-fb563ff0282a/
   imageReadTime = (images) => {
+    const photo = this.photosPerMinute;
     let second =
       images > 10
-        ? (images / 2) * (this.photosPerMinute + 3) + (images - 10) * 3 // n/2(a+b)+3sec/image
-        : (images / 2) * (2 * this.photosPerMinute + (1 - images)); // n/2[2a+(n-1)d]
+        ? (images / 2) * (photo + 3) + (images - 10) * 3 // n/2(a+b)+3sec/image
+        : (images / 2) * (2 * photo + (1 - images)); // n/2[2a+(n-1)d]
 
     return Math.ceil(second / 60);
   };
 
   // get all images from elements
   getImages = (str) => {
+    const { img, noscript } = this.regexDefault;
     let images = [];
-    let img;
+    let image;
 
-    while (
-      (img = this.regexDefault.img.exec(
-        str.replace(this.regexDefault.noscript)
-      ))
-    ) {
-      images.push(img[1]);
+    while ((image = img.exec(str.replace(noscript)))) {
+      images.push(image[1]);
     }
+
     return images.length;
   };
 
+  // https://generator.lorem-ipsum.info/_korean2
+  // https://www.regular-expressions.info/unicode.html
   match = (str) => {
-    // https://generator.lorem-ipsum.info/_korean2
-    // https://www.regular-expressions.info/unicode.html
+    const { global, notAword, newLine, space } = this.regexDefault;
 
-    const charCount = str.match(this.regexDefault.global);
-    text = str.replace(this.regexDefault.notAword, ' ');
-    text = str.replace(this.regexDefault.newLine, ' ');
-    let text = str.replace(this.regexDefault.global, ' ');
+    const charCount = str.match(global);
 
-    return (
-      text.trim().split(this.regexDefault.space).length +
-      (charCount ? charCount.length : 0)
-    );
+    let text = str.replace(notAword, ' ');
+    text = str.replace(newLine, ' ');
+    text = str.replace(global, ' ');
+
+    return text.split(space).length + (charCount ? charCount.length : 0);
   };
 }
 
