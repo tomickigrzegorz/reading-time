@@ -17,35 +17,17 @@
 See the demo - [example](https://tomik23.github.io/reading-time/)  
 An example of production use can be seen [here](https://grzegorztomicki.pl/rzym-w-majowy-weekend.html).
 
-## Initialization
-
-```js
-yarn
-// or
-npm install
-```
-
-## Run the app
-
-Run the app, just call:
-
-```js
-yarn watch
-// or
-npm run watch
-```
-
-## The final code:
-
-```js
-yarn build
-// or
-npm run build
-```
-
 ## Installation
 
-Download file `readingTime.min.js` from `docs` and add before close `</body>`, `<script src="./path/to/readingTime.min.js"></script>`
+### CDN
+
+```html
+<script src="https://cdn.jsdelivr.net/gh/tomik23/reading-time@1.0.4/dist/readingTime.min.js"></script>
+```
+
+-- OR --
+
+Download file `readingTime.min.js` from `dist` and add before close `</body>`, `<script src="./path/to/readingTime.min.js"></script>`
 
 Add an HTML element to which we will inject information about the minutes and the number of words as well as photos.
 
@@ -92,6 +74,32 @@ JavaScript
     }
   });
 </script>
+```
+
+## Initialization
+
+```js
+yarn
+// or
+npm install
+```
+
+## Run the app
+
+Run the app, just call:
+
+```js
+yarn watch
+// or
+npm run watch
+```
+
+## The final code:
+
+```js
+yarn build
+// or
+npm run build
 ```
 
 ## Summary
