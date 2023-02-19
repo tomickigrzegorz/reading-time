@@ -5,16 +5,16 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/package-json/v/tomik23/reading-time?style=for-the-badge">
-  <img src="https://img.shields.io/github/size/tomik23/reading-time/docs/readingTime.min.js?style=for-the-badge">
+  <img src="https://img.shields.io/github/package-json/v/tomickigrzegorz/reading-time?style=for-the-badge">
+  <img src="https://img.shields.io/github/size/tomickigrzegorz/reading-time/docs/readingTime.min.js?style=for-the-badge">
   <a href="LICENSE">
-    <img src="https://img.shields.io/github/license/tomik23/reading-time?style=for-the-badge">
+    <img src="https://img.shields.io/github/license/tomickigrzegorz/reading-time?style=for-the-badge">
   </a>
 </p>
 
 ## Demo
 
-See the demo - [example](https://tomik23.github.io/reading-time/)  
+See the demo - [example](https://tomickigrzegorz.github.io/reading-time/)  
 An example of production use can be seen [here](https://grzegorztomicki.pl/rzym-w-majowy-weekend.html).
 
 ## Installation
@@ -22,7 +22,7 @@ An example of production use can be seen [here](https://grzegorztomicki.pl/rzym-
 ### CDN
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/tomik23/reading-time@1.0.4/dist/readingTime.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/tomickigrzegorz/reading-time@1.0.4/dist/readingTime.min.js"></script>
 ```
 
 -- OR --
@@ -104,7 +104,7 @@ npm run build
 
 ## Summary
 
-As you can see in the example [reading-time](https://tomik23.github.io/reading-time/), the library has been tested with several languages such as Georgian, Arabic, Korean, Hindi, Japanise, Chinese ...
+As you can see in the example [reading-time](https://tomickigrzegorz.github.io/reading-time/), the library has been tested with several languages such as Georgian, Arabic, Korean, Hindi, Japanise, Chinese ...
 You can control the time at which the text `wordsPerMinute` is read and when we view photos `photosPerMinute`.
 
 Unfortunately, at present you can only set the reading time globally, you cannot set the time for a particular language. On the other hand, there are practically no articles with many languages, therefore you can take the average of all languages.

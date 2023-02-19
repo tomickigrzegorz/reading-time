@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tomik23/reading-time.git"
+    "url": "https://github.com/tomickigrzegorz/reading-time.git"
   },
   "scripts": {
     "build": "rollup -c --environment PRODUCTION",
