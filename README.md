@@ -22,7 +22,7 @@ An example of production use can be seen [here](https://grzegorztomicki.pl/rzym-
 ### CDN
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/tomickigrzegorz/reading-time@1.0.4/dist/readingTime.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/tomickigrzegorz/reading-time@1.1.0/dist/readingTime.min.js"></script>
 ```
 
 -- OR --
