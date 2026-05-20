@@ -1,18 +1,27 @@
-import { babel } from "@rollup/plugin-babel";
+import typescript from "@rollup/plugin-typescript";
 import { terser } from "rollup-plugin-terser";
 import serve from "rollup-plugin-serve";
 import livereload from "rollup-plugin-livereload";
 import cleanup from "rollup-plugin-cleanup";
 
 import pkg from "./package.json";
-const input = "sources/script.js";
+const input = "sources/script.ts";
 
 const { PRODUCTION } = process.env;
+
+const tsPlugin = () =>
+  typescript({
+    tsconfig: "./tsconfig.json",
+    declaration: false,
+    declarationMap: false,
+    declarationDir: undefined,
+    emitDeclarationOnly: false,
+  });
 
 export default [
   {
     input,
-    plugins: [babel({ babelHelpers: "bundled" }), cleanup()],
+    plugins: [tsPlugin(), cleanup({ extensions: ["js", "ts"] })],
     watch: false,
     output: {
       name: "ReadingTime",
@@ -23,7 +32,7 @@ export default [
   },
   {
     input,
-    plugins: [babel({ babelHelpers: "bundled" }), cleanup()],
+    plugins: [tsPlugin(), cleanup({ extensions: ["js", "ts"] })],
     watch: false,
     output: {
       name: "ReadingTime",
@@ -35,16 +44,14 @@ export default [
   },
   {
     input,
-    plugins: [babel({ babelHelpers: "bundled" }), cleanup()],
+    plugins: [tsPlugin(), cleanup({ extensions: ["js", "ts"] })],
     output: {
       name: "ReadingTime",
       format: "iife",
       sourcemap: true,
       file: "docs/readingTime.min.js",
       plugins: [
-        terser({
-          mangle: true,
-        }),
+        terser({ mangle: true }),
         !PRODUCTION && serve({ open: true, contentBase: ["docs"] }),
         !PRODUCTION && livereload(),
       ],
@@ -53,7 +60,7 @@ export default [
   {
     input,
     watch: false,
-    plugins: [babel({ babelHelpers: "bundled" }), cleanup()],
+    plugins: [tsPlugin(), cleanup({ extensions: ["js", "ts"] })],
     output: [
       {
         name: "ReadingTime",
@@ -78,7 +85,7 @@ export default [
   {
     input,
     watch: false,
-    plugins: [babel({ babelHelpers: "bundled" }), cleanup()],
+    plugins: [tsPlugin(), cleanup({ extensions: ["js", "ts"] })],
     output: [
       {
         name: "ReadingTime",
